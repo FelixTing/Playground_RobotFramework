@@ -5,6 +5,7 @@ import sys
 import subprocess
 import http.client
 import time
+from dotenv import load_dotenv
 
 services = {
     "core-data": {"composeName": "data", "port": 48080, "url": "/api/v1/ping"},
@@ -22,7 +23,7 @@ services = {
 class EdgeX(object):
 
     def __init__(self):
-        print("init")
+        load_dotenv(dotenv_path=get_env_file(), verbose=True)
 
     def deploy_edgex(self):
         # Deploy services
