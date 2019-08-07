@@ -1,0 +1,1547 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generated="20190807 21:46:33.908" rpa="false" generator="Robot 3.1.2 (Python 3.5.2 on linux)">
+<suite name="Playground RobotFramework" source="/home/felix/Downloads/Playground_RobotFramework" id="s1">
+<suite name="Suites" source="/home/felix/Downloads/Playground_RobotFramework/suites" id="s1-s1">
+<suite name="Device Virtual Tests" source="/home/felix/Downloads/Playground_RobotFramework/suites/device_virtual_tests.robot" id="s1-s1-s1">
+<kw name="Deploy Edgex" library="EdgeX" type="setup">
+<msg level="INFO" timestamp="20190807 21:46:59.195">exit 0</msg>
+<msg level="INFO" timestamp="20190807 21:46:59.195">Success to execute cmd: docker run --rm --env-file x86_64.env -e PWD=/home/felix/Downloads/Playground_RobotFramework -v /home/felix/Downloads/Playground_RobotFramework:/home/felix/Downloads/Playground_RobotFramework -w /home/felix/Downloads/Playground_RobotFramework -v /var/run/docker.sock:/var/run/docker.sock docker/compose:1.24.0 up -d</msg>
+<msg level="INFO" timestamp="20190807 21:46:59.195">Check service export-client is startup...</msg>
+<msg level="INFO" timestamp="20190807 21:46:59.196">Ping localhost 48071/api/v1/ping ... </msg>
+<msg level="INFO" timestamp="20190807 21:46:59.201">200</msg>
+<msg level="INFO" timestamp="20190807 21:46:59.201">Service is startup.</msg>
+<msg level="INFO" timestamp="20190807 21:46:59.202">Check service core-metadata is startup...</msg>
+<msg level="INFO" timestamp="20190807 21:46:59.202">Ping localhost 48081/api/v1/ping ... </msg>
+<msg level="INFO" timestamp="20190807 21:46:59.203">200</msg>
+<msg level="INFO" timestamp="20190807 21:46:59.203">Service is startup.</msg>
+<msg level="INFO" timestamp="20190807 21:46:59.203">Check service core-data is startup...</msg>
+<msg level="INFO" timestamp="20190807 21:46:59.203">Ping localhost 48080/api/v1/ping ... </msg>
+<msg level="INFO" timestamp="20190807 21:46:59.204">200</msg>
+<msg level="INFO" timestamp="20190807 21:46:59.204">Service is startup.</msg>
+<msg level="INFO" timestamp="20190807 21:46:59.205">Check service support-scheduler is startup...</msg>
+<msg level="INFO" timestamp="20190807 21:46:59.205">Ping localhost 48085/api/v1/ping ... </msg>
+<msg level="INFO" timestamp="20190807 21:46:59.206">200</msg>
+<msg level="INFO" timestamp="20190807 21:46:59.209">Service is startup.</msg>
+<msg level="INFO" timestamp="20190807 21:46:59.209">Check service support-notifications is startup...</msg>
+<msg level="INFO" timestamp="20190807 21:46:59.209">Ping localhost 48060/api/v1/ping ... </msg>
+<msg level="INFO" timestamp="20190807 21:46:59.229">200</msg>
+<msg level="INFO" timestamp="20190807 21:46:59.229">Service is startup.</msg>
+<msg level="INFO" timestamp="20190807 21:46:59.229">Check service support-rulesengine is startup...</msg>
+<msg level="INFO" timestamp="20190807 21:46:59.229">Ping localhost 48075/api/v1/ping ... </msg>
+<msg level="INFO" timestamp="20190807 21:47:04.236">Ping localhost 48075/api/v1/ping ... </msg>
+<msg level="INFO" timestamp="20190807 21:47:09.241">Ping localhost 48075/api/v1/ping ... </msg>
+<msg level="INFO" timestamp="20190807 21:47:14.246">Ping localhost 48075/api/v1/ping ... </msg>
+<msg level="INFO" timestamp="20190807 21:47:19.251">Ping localhost 48075/api/v1/ping ... </msg>
+<msg level="INFO" timestamp="20190807 21:47:19.610">200</msg>
+<msg level="INFO" timestamp="20190807 21:47:19.610">Service is startup.</msg>
+<msg level="INFO" timestamp="20190807 21:47:19.610">Check service core-command is startup...</msg>
+<msg level="INFO" timestamp="20190807 21:47:19.610">Ping localhost 48082/api/v1/ping ... </msg>
+<msg level="INFO" timestamp="20190807 21:47:19.611">200</msg>
+<msg level="INFO" timestamp="20190807 21:47:19.612">Service is startup.</msg>
+<msg level="INFO" timestamp="20190807 21:47:19.612">Check service export-distro is startup...</msg>
+<msg level="INFO" timestamp="20190807 21:47:19.612">Ping localhost 48070/api/v1/ping ... </msg>
+<msg level="INFO" timestamp="20190807 21:47:19.613">200</msg>
+<msg level="INFO" timestamp="20190807 21:47:19.613">Service is startup.</msg>
+<msg level="INFO" timestamp="20190807 21:47:19.613">Check service device-virtual is startup...</msg>
+<msg level="INFO" timestamp="20190807 21:47:19.613">Ping localhost 49990/api/v1/ping ... </msg>
+<msg level="INFO" timestamp="20190807 21:47:19.616">200</msg>
+<msg level="INFO" timestamp="20190807 21:47:19.617">Service is startup.</msg>
+<msg level="INFO" timestamp="20190807 21:47:19.617">Check service support-logging is startup...</msg>
+<msg level="INFO" timestamp="20190807 21:47:19.618">Ping localhost 48061/api/v1/ping ... </msg>
+<msg level="INFO" timestamp="20190807 21:47:19.620">200</msg>
+<msg level="INFO" timestamp="20190807 21:47:19.620">Service is startup.</msg>
+<status starttime="20190807 21:46:34.451" status="PASS" endtime="20190807 21:47:19.621"></status>
+</kw>
+<test name="Health check" id="s1-s1-s1-t1">
+<kw name="Given send ping request" library="resource">
+<kw name="Create url" library="resource">
+<arguments>
+<arg>${BASE_URL_DEVICE_VIRTUAL}</arg>
+<arg>${PATH_PING}</arg>
+</arguments>
+<assign>
+<var>${url}</var>
+</assign>
+<kw name="Catenate" library="BuiltIn">
+<doc>Catenates the given items together and returns the resulted string.</doc>
+<arguments>
+<arg>SEPARATOR=/</arg>
+<arg>@{args}</arg>
+</arguments>
+<assign>
+<var>${url}</var>
+</assign>
+<msg level="INFO" timestamp="20190807 21:47:19.644">${url} = http://192.168.0.120:49990/api/v1/ping</msg>
+<status starttime="20190807 21:47:19.644" status="PASS" endtime="20190807 21:47:19.649"></status>
+</kw>
+<msg level="INFO" timestamp="20190807 21:47:19.649">${url} = http://192.168.0.120:49990/api/v1/ping</msg>
+<status starttime="20190807 21:47:19.643" status="PASS" endtime="20190807 21:47:19.649"></status>
+</kw>
+<kw name="Send get request" library="resource">
+<arguments>
+<arg>${url}</arg>
+</arguments>
+<kw name="Get" library="REST">
+<tags>
+<tag>http</tag>
+</tags>
+<doc>*Sends a GET request to the endpoint.*</doc>
+<arguments>
+<arg>${url}</arg>
+<arg>headers={ "Accept": "text/plain" }</arg>
+</arguments>
+<assign>
+<var>${RESPONSE}</var>
+</assign>
+<msg level="WARN" timestamp="20190807 21:47:19.752">Response body content is not JSON. Content-Type is: text/plain; charset=utf-8</msg>
+<msg level="INFO" timestamp="20190807 21:47:19.753">${RESPONSE} = {'headers': {'Content-Length': '5', 'Content-Type': 'text/plain; charset=utf-8', 'Date': 'Wed, 07 Aug 2019 13:47:19 GMT'}, 'body': '1.0.0', 'status': 200, 'seconds': 0.015229}</msg>
+<status starttime="20190807 21:47:19.650" status="PASS" endtime="20190807 21:47:19.753"></status>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<arguments>
+<arg>${RESPONSE}</arg>
+</arguments>
+<msg level="INFO" timestamp="20190807 21:47:19.754">${RESPONSE} = {'headers': {'Content-Length': '5', 'Content-Type': 'text/plain; charset=utf-8', 'Date': 'Wed, 07 Aug 2019 13:47:19 GMT'}, 'body': '1.0.0', 'status': 200, 'seconds': 0.015229}</msg>
+<status starttime="20190807 21:47:19.753" status="PASS" endtime="20190807 21:47:19.754"></status>
+</kw>
+<status starttime="20190807 21:47:19.649" status="PASS" endtime="20190807 21:47:19.754"></status>
+</kw>
+<status starttime="20190807 21:47:19.637" status="PASS" endtime="20190807 21:47:19.754"></status>
+</kw>
+<kw name="When response status is ok" library="resource">
+<kw name="Should Be True" library="BuiltIn">
+<doc>Fails if the given condition is not true.</doc>
+<arguments>
+<arg>${RESPONSE["status"]} == ${STATUS_CODE_OK}</arg>
+</arguments>
+<status starttime="20190807 21:47:19.755" status="PASS" endtime="20190807 21:47:19.759"></status>
+</kw>
+<status starttime="20190807 21:47:19.755" status="PASS" endtime="20190807 21:47:19.760"></status>
+</kw>
+<kw name="Then response time should be less than &quot;600&quot; milliseconds" library="resource">
+<kw name="Should Be True" library="BuiltIn">
+<doc>Fails if the given condition is not true.</doc>
+<arguments>
+<arg>${RESPONSE["seconds"]} &lt; ${acceptable_value}</arg>
+</arguments>
+<status starttime="20190807 21:47:19.764" status="PASS" endtime="20190807 21:47:19.765"></status>
+</kw>
+<status starttime="20190807 21:47:19.761" status="PASS" endtime="20190807 21:47:19.765"></status>
+</kw>
+<kw name="And response should have header &quot;Content-Type&quot;" library="resource">
+<kw name="Should Contain" library="BuiltIn">
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<arguments>
+<arg>${RESPONSE["headers"]}</arg>
+<arg>${content_type}</arg>
+</arguments>
+<status starttime="20190807 21:47:19.768" status="PASS" endtime="20190807 21:47:19.768"></status>
+</kw>
+<status starttime="20190807 21:47:19.765" status="PASS" endtime="20190807 21:47:19.768"></status>
+</kw>
+<kw name="And response text should include version number &quot;1.0.0&quot;" library="resource">
+<kw name="Should Contain" library="BuiltIn">
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<arguments>
+<arg>${RESPONSE["body"]}</arg>
+<arg>${version_number}</arg>
+</arguments>
+<status starttime="20190807 21:47:19.771" status="PASS" endtime="20190807 21:47:19.771"></status>
+</kw>
+<status starttime="20190807 21:47:19.769" status="PASS" endtime="20190807 21:47:19.771"></status>
+</kw>
+<status starttime="20190807 21:47:19.622" critical="yes" status="PASS" endtime="20190807 21:47:19.771"></status>
+</test>
+<test name="Device profile existence check" id="s1-s1-s1-t2">
+<kw name="Device profile should exist in metadata">
+<arguments>
+<arg>${DEVICE_PROFILE_BOOL}</arg>
+</arguments>
+<kw name="Given get device profile &quot;${device_profile_name}&quot;" library="resource">
+<kw name="Create url" library="resource">
+<arguments>
+<arg>${BASE_URL_METADATA}</arg>
+<arg>${PATH_GET_DEVICE_PROFILE}</arg>
+<arg>${profile_name}</arg>
+</arguments>
+<assign>
+<var>${url}</var>
+</assign>
+<kw name="Catenate" library="BuiltIn">
+<doc>Catenates the given items together and returns the resulted string.</doc>
+<arguments>
+<arg>SEPARATOR=/</arg>
+<arg>@{args}</arg>
+</arguments>
+<assign>
+<var>${url}</var>
+</assign>
+<msg level="INFO" timestamp="20190807 21:47:19.775">${url} = http://192.168.0.120:48081/api/v1/deviceprofile/name/Random-Boolean-Device</msg>
+<status starttime="20190807 21:47:19.775" status="PASS" endtime="20190807 21:47:19.775"></status>
+</kw>
+<msg level="INFO" timestamp="20190807 21:47:19.776">${url} = http://192.168.0.120:48081/api/v1/deviceprofile/name/Random-Boolean-Device</msg>
+<status starttime="20190807 21:47:19.774" status="PASS" endtime="20190807 21:47:19.776"></status>
+</kw>
+<kw name="Send get request" library="resource">
+<arguments>
+<arg>${url}</arg>
+</arguments>
+<kw name="Get" library="REST">
+<tags>
+<tag>http</tag>
+</tags>
+<doc>*Sends a GET request to the endpoint.*</doc>
+<arguments>
+<arg>${url}</arg>
+<arg>headers={ "Accept": "text/plain" }</arg>
+</arguments>
+<assign>
+<var>${RESPONSE}</var>
+</assign>
+<msg level="INFO" timestamp="20190807 21:47:19.823">${RESPONSE} = {'headers': {'Content-Length': '1456', 'Date': 'Wed, 07 Aug 2019 13:47:19 GMT', 'Content-Type': 'application/json'}, 'body': {'name': 'Random-Boolean-Device', 'model': 'Device-Virtual-01', 'manufactur...</msg>
+<status starttime="20190807 21:47:19.776" status="PASS" endtime="20190807 21:47:19.823"></status>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<arguments>
+<arg>${RESPONSE}</arg>
+</arguments>
+<msg level="INFO" timestamp="20190807 21:47:19.824">${RESPONSE} = {'headers': {'Content-Length': '1456', 'Date': 'Wed, 07 Aug 2019 13:47:19 GMT', 'Content-Type': 'application/json'}, 'body': {'name': 'Random-Boolean-Device', 'model': 'Device-Virtual-01', 'manufactur...</msg>
+<status starttime="20190807 21:47:19.823" status="PASS" endtime="20190807 21:47:19.824"></status>
+</kw>
+<status starttime="20190807 21:47:19.776" status="PASS" endtime="20190807 21:47:19.824"></status>
+</kw>
+<status starttime="20190807 21:47:19.774" status="PASS" endtime="20190807 21:47:19.824"></status>
+</kw>
+<kw name="When response status is ok" library="resource">
+<kw name="Should Be True" library="BuiltIn">
+<doc>Fails if the given condition is not true.</doc>
+<arguments>
+<arg>${RESPONSE["status"]} == ${STATUS_CODE_OK}</arg>
+</arguments>
+<status starttime="20190807 21:47:19.826" status="PASS" endtime="20190807 21:47:19.829"></status>
+</kw>
+<status starttime="20190807 21:47:19.826" status="PASS" endtime="20190807 21:47:19.829"></status>
+</kw>
+<kw name="Then response time should be less than &quot;600&quot; milliseconds" library="resource">
+<kw name="Should Be True" library="BuiltIn">
+<doc>Fails if the given condition is not true.</doc>
+<arguments>
+<arg>${RESPONSE["seconds"]} &lt; ${acceptable_value}</arg>
+</arguments>
+<status starttime="20190807 21:47:19.829" status="PASS" endtime="20190807 21:47:19.830"></status>
+</kw>
+<status starttime="20190807 21:47:19.829" status="PASS" endtime="20190807 21:47:19.833"></status>
+</kw>
+<kw name="And response should have header &quot;Content-Type&quot;" library="resource">
+<kw name="Should Contain" library="BuiltIn">
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<arguments>
+<arg>${RESPONSE["headers"]}</arg>
+<arg>${content_type}</arg>
+</arguments>
+<status starttime="20190807 21:47:19.833" status="PASS" endtime="20190807 21:47:19.834"></status>
+</kw>
+<status starttime="20190807 21:47:19.833" status="PASS" endtime="20190807 21:47:19.834"></status>
+</kw>
+<kw name="And content type is &quot;application/json&quot;" library="resource">
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${RESPONSE["headers"]["Content-Type"]}</arg>
+<arg>${expected_type}</arg>
+</arguments>
+<status starttime="20190807 21:47:19.835" status="PASS" endtime="20190807 21:47:19.839"></status>
+</kw>
+<status starttime="20190807 21:47:19.834" status="PASS" endtime="20190807 21:47:19.839"></status>
+</kw>
+<kw name="And response body is json format" library="resource">
+<kw name="Dumps" library="json">
+<doc>Serialize ``obj`` to a JSON formatted ``str``.</doc>
+<arguments>
+<arg>${RESPONSE["body"]}</arg>
+</arguments>
+<assign>
+<var>${string}</var>
+</assign>
+<msg level="INFO" timestamp="20190807 21:47:19.841">${string} = {"name": "Random-Boolean-Device", "model": "Device-Virtual-01", "manufacturer": "IOTech", "deviceCommands": [{"name": "RandomValue_Bool", "get": [{"parameter": "RandomValue_Bool", "operation": "get", ...</msg>
+<status starttime="20190807 21:47:19.841" status="PASS" endtime="20190807 21:47:19.841"></status>
+</kw>
+<kw name="Should Be Valid Json" library="Tools">
+<arguments>
+<arg>${string}</arg>
+</arguments>
+<status starttime="20190807 21:47:19.842" status="PASS" endtime="20190807 21:47:19.842"></status>
+</kw>
+<status starttime="20190807 21:47:19.840" status="PASS" endtime="20190807 21:47:19.842"></status>
+</kw>
+<kw name="And device profile name is &quot;${device_profile_name}&quot;" library="resource">
+<kw name="Get Json Value" library="Tools">
+<arguments>
+<arg>${RESPONSE["body"]}</arg>
+<arg>/name</arg>
+</arguments>
+<assign>
+<var>${name}</var>
+</assign>
+<msg level="INFO" timestamp="20190807 21:47:19.843">${name} = Random-Boolean-Device</msg>
+<status starttime="20190807 21:47:19.843" status="PASS" endtime="20190807 21:47:19.843"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${name}</arg>
+<arg>${expected_device_profile_name}</arg>
+</arguments>
+<status starttime="20190807 21:47:19.844" status="PASS" endtime="20190807 21:47:19.844"></status>
+</kw>
+<status starttime="20190807 21:47:19.842" status="PASS" endtime="20190807 21:47:19.844"></status>
+</kw>
+<status starttime="20190807 21:47:19.774" status="PASS" endtime="20190807 21:47:19.844"></status>
+</kw>
+<kw name="Device profile should exist in metadata">
+<arguments>
+<arg>${DEVICE_PROFILE_INT}</arg>
+</arguments>
+<kw name="Given get device profile &quot;${device_profile_name}&quot;" library="resource">
+<kw name="Create url" library="resource">
+<arguments>
+<arg>${BASE_URL_METADATA}</arg>
+<arg>${PATH_GET_DEVICE_PROFILE}</arg>
+<arg>${profile_name}</arg>
+</arguments>
+<assign>
+<var>${url}</var>
+</assign>
+<kw name="Catenate" library="BuiltIn">
+<doc>Catenates the given items together and returns the resulted string.</doc>
+<arguments>
+<arg>SEPARATOR=/</arg>
+<arg>@{args}</arg>
+</arguments>
+<assign>
+<var>${url}</var>
+</assign>
+<msg level="INFO" timestamp="20190807 21:47:19.851">${url} = http://192.168.0.120:48081/api/v1/deviceprofile/name/Random-Integer-Device</msg>
+<status starttime="20190807 21:47:19.851" status="PASS" endtime="20190807 21:47:19.851"></status>
+</kw>
+<msg level="INFO" timestamp="20190807 21:47:19.855">${url} = http://192.168.0.120:48081/api/v1/deviceprofile/name/Random-Integer-Device</msg>
+<status starttime="20190807 21:47:19.850" status="PASS" endtime="20190807 21:47:19.855"></status>
+</kw>
+<kw name="Send get request" library="resource">
+<arguments>
+<arg>${url}</arg>
+</arguments>
+<kw name="Get" library="REST">
+<tags>
+<tag>http</tag>
+</tags>
+<doc>*Sends a GET request to the endpoint.*</doc>
+<arguments>
+<arg>${url}</arg>
+<arg>headers={ "Accept": "text/plain" }</arg>
+</arguments>
+<assign>
+<var>${RESPONSE}</var>
+</assign>
+<msg level="INFO" timestamp="20190807 21:47:19.874">${RESPONSE} = {'headers': {'Date': 'Wed, 07 Aug 2019 13:47:19 GMT', 'Content-Type': 'application/json', 'Transfer-Encoding': 'chunked'}, 'body': {'name': 'Random-Integer-Device', 'model': 'Device-Virtual-01', 'manu...</msg>
+<status starttime="20190807 21:47:19.857" status="PASS" endtime="20190807 21:47:19.875"></status>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<arguments>
+<arg>${RESPONSE}</arg>
+</arguments>
+<msg level="INFO" timestamp="20190807 21:47:19.876">${RESPONSE} = {'headers': {'Date': 'Wed, 07 Aug 2019 13:47:19 GMT', 'Content-Type': 'application/json', 'Transfer-Encoding': 'chunked'}, 'body': {'name': 'Random-Integer-Device', 'model': 'Device-Virtual-01', 'manu...</msg>
+<status starttime="20190807 21:47:19.875" status="PASS" endtime="20190807 21:47:19.876"></status>
+</kw>
+<status starttime="20190807 21:47:19.855" status="PASS" endtime="20190807 21:47:19.876"></status>
+</kw>
+<status starttime="20190807 21:47:19.848" status="PASS" endtime="20190807 21:47:19.876"></status>
+</kw>
+<kw name="When response status is ok" library="resource">
+<kw name="Should Be True" library="BuiltIn">
+<doc>Fails if the given condition is not true.</doc>
+<arguments>
+<arg>${RESPONSE["status"]} == ${STATUS_CODE_OK}</arg>
+</arguments>
+<status starttime="20190807 21:47:19.877" status="PASS" endtime="20190807 21:47:19.882"></status>
+</kw>
+<status starttime="20190807 21:47:19.876" status="PASS" endtime="20190807 21:47:19.882"></status>
+</kw>
+<kw name="Then response time should be less than &quot;600&quot; milliseconds" library="resource">
+<kw name="Should Be True" library="BuiltIn">
+<doc>Fails if the given condition is not true.</doc>
+<arguments>
+<arg>${RESPONSE["seconds"]} &lt; ${acceptable_value}</arg>
+</arguments>
+<status starttime="20190807 21:47:19.883" status="PASS" endtime="20190807 21:47:19.883"></status>
+</kw>
+<status starttime="20190807 21:47:19.882" status="PASS" endtime="20190807 21:47:19.883"></status>
+</kw>
+<kw name="And response should have header &quot;Content-Type&quot;" library="resource">
+<kw name="Should Contain" library="BuiltIn">
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<arguments>
+<arg>${RESPONSE["headers"]}</arg>
+<arg>${content_type}</arg>
+</arguments>
+<status starttime="20190807 21:47:19.887" status="PASS" endtime="20190807 21:47:19.887"></status>
+</kw>
+<status starttime="20190807 21:47:19.883" status="PASS" endtime="20190807 21:47:19.887"></status>
+</kw>
+<kw name="And content type is &quot;application/json&quot;" library="resource">
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${RESPONSE["headers"]["Content-Type"]}</arg>
+<arg>${expected_type}</arg>
+</arguments>
+<status starttime="20190807 21:47:19.889" status="PASS" endtime="20190807 21:47:19.892"></status>
+</kw>
+<status starttime="20190807 21:47:19.889" status="PASS" endtime="20190807 21:47:19.892"></status>
+</kw>
+<kw name="And response body is json format" library="resource">
+<kw name="Dumps" library="json">
+<doc>Serialize ``obj`` to a JSON formatted ``str``.</doc>
+<arguments>
+<arg>${RESPONSE["body"]}</arg>
+</arguments>
+<assign>
+<var>${string}</var>
+</assign>
+<msg level="INFO" timestamp="20190807 21:47:19.896">${string} = {"name": "Random-Integer-Device", "model": "Device-Virtual-01", "manufacturer": "IOTech", "deviceCommands": [{"name": "RandomValue_Int8", "get": [{"parameter": "RandomValue_Int8", "operation": "get", ...</msg>
+<status starttime="20190807 21:47:19.894" status="PASS" endtime="20190807 21:47:19.896"></status>
+</kw>
+<kw name="Should Be Valid Json" library="Tools">
+<arguments>
+<arg>${string}</arg>
+</arguments>
+<status starttime="20190807 21:47:19.897" status="PASS" endtime="20190807 21:47:19.897"></status>
+</kw>
+<status starttime="20190807 21:47:19.892" status="PASS" endtime="20190807 21:47:19.897"></status>
+</kw>
+<kw name="And device profile name is &quot;${device_profile_name}&quot;" library="resource">
+<kw name="Get Json Value" library="Tools">
+<arguments>
+<arg>${RESPONSE["body"]}</arg>
+<arg>/name</arg>
+</arguments>
+<assign>
+<var>${name}</var>
+</assign>
+<msg level="INFO" timestamp="20190807 21:47:19.902">${name} = Random-Integer-Device</msg>
+<status starttime="20190807 21:47:19.901" status="PASS" endtime="20190807 21:47:19.902"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${name}</arg>
+<arg>${expected_device_profile_name}</arg>
+</arguments>
+<status starttime="20190807 21:47:19.902" status="PASS" endtime="20190807 21:47:19.903"></status>
+</kw>
+<status starttime="20190807 21:47:19.898" status="PASS" endtime="20190807 21:47:19.903"></status>
+</kw>
+<status starttime="20190807 21:47:19.847" status="PASS" endtime="20190807 21:47:19.903"></status>
+</kw>
+<kw name="Device profile should exist in metadata">
+<arguments>
+<arg>${DEVICE_PROFILE_UINT}</arg>
+</arguments>
+<kw name="Given get device profile &quot;${device_profile_name}&quot;" library="resource">
+<kw name="Create url" library="resource">
+<arguments>
+<arg>${BASE_URL_METADATA}</arg>
+<arg>${PATH_GET_DEVICE_PROFILE}</arg>
+<arg>${profile_name}</arg>
+</arguments>
+<assign>
+<var>${url}</var>
+</assign>
+<kw name="Catenate" library="BuiltIn">
+<doc>Catenates the given items together and returns the resulted string.</doc>
+<arguments>
+<arg>SEPARATOR=/</arg>
+<arg>@{args}</arg>
+</arguments>
+<assign>
+<var>${url}</var>
+</assign>
+<msg level="INFO" timestamp="20190807 21:47:19.909">${url} = http://192.168.0.120:48081/api/v1/deviceprofile/name/Random-UnsignedInteger-Device</msg>
+<status starttime="20190807 21:47:19.908" status="PASS" endtime="20190807 21:47:19.909"></status>
+</kw>
+<msg level="INFO" timestamp="20190807 21:47:19.909">${url} = http://192.168.0.120:48081/api/v1/deviceprofile/name/Random-UnsignedInteger-Device</msg>
+<status starttime="20190807 21:47:19.906" status="PASS" endtime="20190807 21:47:19.909"></status>
+</kw>
+<kw name="Send get request" library="resource">
+<arguments>
+<arg>${url}</arg>
+</arguments>
+<kw name="Get" library="REST">
+<tags>
+<tag>http</tag>
+</tags>
+<doc>*Sends a GET request to the endpoint.*</doc>
+<arguments>
+<arg>${url}</arg>
+<arg>headers={ "Accept": "text/plain" }</arg>
+</arguments>
+<assign>
+<var>${RESPONSE}</var>
+</assign>
+<msg level="INFO" timestamp="20190807 21:47:19.933">${RESPONSE} = {'headers': {'Date': 'Wed, 07 Aug 2019 13:47:19 GMT', 'Content-Type': 'application/json', 'Transfer-Encoding': 'chunked'}, 'body': {'name': 'Random-UnsignedInteger-Device', 'model': 'Device-Virtual-01...</msg>
+<status starttime="20190807 21:47:19.910" status="PASS" endtime="20190807 21:47:19.933"></status>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<arguments>
+<arg>${RESPONSE}</arg>
+</arguments>
+<msg level="INFO" timestamp="20190807 21:47:19.937">${RESPONSE} = {'headers': {'Date': 'Wed, 07 Aug 2019 13:47:19 GMT', 'Content-Type': 'application/json', 'Transfer-Encoding': 'chunked'}, 'body': {'name': 'Random-UnsignedInteger-Device', 'model': 'Device-Virtual-01...</msg>
+<status starttime="20190807 21:47:19.936" status="PASS" endtime="20190807 21:47:19.938"></status>
+</kw>
+<status starttime="20190807 21:47:19.909" status="PASS" endtime="20190807 21:47:19.938"></status>
+</kw>
+<status starttime="20190807 21:47:19.905" status="PASS" endtime="20190807 21:47:19.938"></status>
+</kw>
+<kw name="When response status is ok" library="resource">
+<kw name="Should Be True" library="BuiltIn">
+<doc>Fails if the given condition is not true.</doc>
+<arguments>
+<arg>${RESPONSE["status"]} == ${STATUS_CODE_OK}</arg>
+</arguments>
+<status starttime="20190807 21:47:19.941" status="PASS" endtime="20190807 21:47:19.943"></status>
+</kw>
+<status starttime="20190807 21:47:19.941" status="PASS" endtime="20190807 21:47:19.943"></status>
+</kw>
+<kw name="Then response time should be less than &quot;600&quot; milliseconds" library="resource">
+<kw name="Should Be True" library="BuiltIn">
+<doc>Fails if the given condition is not true.</doc>
+<arguments>
+<arg>${RESPONSE["seconds"]} &lt; ${acceptable_value}</arg>
+</arguments>
+<status starttime="20190807 21:47:19.948" status="PASS" endtime="20190807 21:47:19.948"></status>
+</kw>
+<status starttime="20190807 21:47:19.947" status="PASS" endtime="20190807 21:47:19.948"></status>
+</kw>
+<kw name="And response should have header &quot;Content-Type&quot;" library="resource">
+<kw name="Should Contain" library="BuiltIn">
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<arguments>
+<arg>${RESPONSE["headers"]}</arg>
+<arg>${content_type}</arg>
+</arguments>
+<status starttime="20190807 21:47:19.953" status="PASS" endtime="20190807 21:47:19.953"></status>
+</kw>
+<status starttime="20190807 21:47:19.948" status="PASS" endtime="20190807 21:47:19.954"></status>
+</kw>
+<kw name="And content type is &quot;application/json&quot;" library="resource">
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${RESPONSE["headers"]["Content-Type"]}</arg>
+<arg>${expected_type}</arg>
+</arguments>
+<status starttime="20190807 21:47:19.954" status="PASS" endtime="20190807 21:47:19.956"></status>
+</kw>
+<status starttime="20190807 21:47:19.954" status="PASS" endtime="20190807 21:47:19.956"></status>
+</kw>
+<kw name="And response body is json format" library="resource">
+<kw name="Dumps" library="json">
+<doc>Serialize ``obj`` to a JSON formatted ``str``.</doc>
+<arguments>
+<arg>${RESPONSE["body"]}</arg>
+</arguments>
+<assign>
+<var>${string}</var>
+</assign>
+<msg level="INFO" timestamp="20190807 21:47:19.957">${string} = {"name": "Random-UnsignedInteger-Device", "model": "Device-Virtual-01", "manufacturer": "IOTech", "deviceCommands": [{"name": "RandomValue_Uint8", "get": [{"parameter": "RandomValue_Uint8", "operation...</msg>
+<status starttime="20190807 21:47:19.956" status="PASS" endtime="20190807 21:47:19.957"></status>
+</kw>
+<kw name="Should Be Valid Json" library="Tools">
+<arguments>
+<arg>${string}</arg>
+</arguments>
+<status starttime="20190807 21:47:19.957" status="PASS" endtime="20190807 21:47:19.958"></status>
+</kw>
+<status starttime="20190807 21:47:19.956" status="PASS" endtime="20190807 21:47:19.962"></status>
+</kw>
+<kw name="And device profile name is &quot;${device_profile_name}&quot;" library="resource">
+<kw name="Get Json Value" library="Tools">
+<arguments>
+<arg>${RESPONSE["body"]}</arg>
+<arg>/name</arg>
+</arguments>
+<assign>
+<var>${name}</var>
+</assign>
+<msg level="INFO" timestamp="20190807 21:47:19.966">${name} = Random-UnsignedInteger-Device</msg>
+<status starttime="20190807 21:47:19.966" status="PASS" endtime="20190807 21:47:19.966"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${name}</arg>
+<arg>${expected_device_profile_name}</arg>
+</arguments>
+<status starttime="20190807 21:47:19.968" status="PASS" endtime="20190807 21:47:19.968"></status>
+</kw>
+<status starttime="20190807 21:47:19.963" status="PASS" endtime="20190807 21:47:19.968"></status>
+</kw>
+<status starttime="20190807 21:47:19.904" status="PASS" endtime="20190807 21:47:19.968"></status>
+</kw>
+<kw name="Device profile should exist in metadata">
+<arguments>
+<arg>${DEVICE_PROFILE_FLOAT}</arg>
+</arguments>
+<kw name="Given get device profile &quot;${device_profile_name}&quot;" library="resource">
+<kw name="Create url" library="resource">
+<arguments>
+<arg>${BASE_URL_METADATA}</arg>
+<arg>${PATH_GET_DEVICE_PROFILE}</arg>
+<arg>${profile_name}</arg>
+</arguments>
+<assign>
+<var>${url}</var>
+</assign>
+<kw name="Catenate" library="BuiltIn">
+<doc>Catenates the given items together and returns the resulted string.</doc>
+<arguments>
+<arg>SEPARATOR=/</arg>
+<arg>@{args}</arg>
+</arguments>
+<assign>
+<var>${url}</var>
+</assign>
+<msg level="INFO" timestamp="20190807 21:47:19.974">${url} = http://192.168.0.120:48081/api/v1/deviceprofile/name/Random-Float-Device</msg>
+<status starttime="20190807 21:47:19.973" status="PASS" endtime="20190807 21:47:19.975"></status>
+</kw>
+<msg level="INFO" timestamp="20190807 21:47:19.975">${url} = http://192.168.0.120:48081/api/v1/deviceprofile/name/Random-Float-Device</msg>
+<status starttime="20190807 21:47:19.972" status="PASS" endtime="20190807 21:47:19.975"></status>
+</kw>
+<kw name="Send get request" library="resource">
+<arguments>
+<arg>${url}</arg>
+</arguments>
+<kw name="Get" library="REST">
+<tags>
+<tag>http</tag>
+</tags>
+<doc>*Sends a GET request to the endpoint.*</doc>
+<arguments>
+<arg>${url}</arg>
+<arg>headers={ "Accept": "text/plain" }</arg>
+</arguments>
+<assign>
+<var>${RESPONSE}</var>
+</assign>
+<msg level="INFO" timestamp="20190807 21:47:20.000">${RESPONSE} = {'headers': {'Date': 'Wed, 07 Aug 2019 13:47:19 GMT', 'Content-Type': 'application/json', 'Transfer-Encoding': 'chunked'}, 'body': {'name': 'Random-Float-Device', 'model': 'Device-Virtual-01', 'manufa...</msg>
+<status starttime="20190807 21:47:19.976" status="PASS" endtime="20190807 21:47:20.001"></status>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<arguments>
+<arg>${RESPONSE}</arg>
+</arguments>
+<msg level="INFO" timestamp="20190807 21:47:20.005">${RESPONSE} = {'headers': {'Date': 'Wed, 07 Aug 2019 13:47:19 GMT', 'Content-Type': 'application/json', 'Transfer-Encoding': 'chunked'}, 'body': {'name': 'Random-Float-Device', 'model': 'Device-Virtual-01', 'manufa...</msg>
+<status starttime="20190807 21:47:20.005" status="PASS" endtime="20190807 21:47:20.006"></status>
+</kw>
+<status starttime="20190807 21:47:19.975" status="PASS" endtime="20190807 21:47:20.006"></status>
+</kw>
+<status starttime="20190807 21:47:19.970" status="PASS" endtime="20190807 21:47:20.006"></status>
+</kw>
+<kw name="When response status is ok" library="resource">
+<kw name="Should Be True" library="BuiltIn">
+<doc>Fails if the given condition is not true.</doc>
+<arguments>
+<arg>${RESPONSE["status"]} == ${STATUS_CODE_OK}</arg>
+</arguments>
+<status starttime="20190807 21:47:20.006" status="PASS" endtime="20190807 21:47:20.008"></status>
+</kw>
+<status starttime="20190807 21:47:20.006" status="PASS" endtime="20190807 21:47:20.008"></status>
+</kw>
+<kw name="Then response time should be less than &quot;600&quot; milliseconds" library="resource">
+<kw name="Should Be True" library="BuiltIn">
+<doc>Fails if the given condition is not true.</doc>
+<arguments>
+<arg>${RESPONSE["seconds"]} &lt; ${acceptable_value}</arg>
+</arguments>
+<status starttime="20190807 21:47:20.010" status="PASS" endtime="20190807 21:47:20.010"></status>
+</kw>
+<status starttime="20190807 21:47:20.008" status="PASS" endtime="20190807 21:47:20.010"></status>
+</kw>
+<kw name="And response should have header &quot;Content-Type&quot;" library="resource">
+<kw name="Should Contain" library="BuiltIn">
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<arguments>
+<arg>${RESPONSE["headers"]}</arg>
+<arg>${content_type}</arg>
+</arguments>
+<status starttime="20190807 21:47:20.012" status="PASS" endtime="20190807 21:47:20.017"></status>
+</kw>
+<status starttime="20190807 21:47:20.011" status="PASS" endtime="20190807 21:47:20.018"></status>
+</kw>
+<kw name="And content type is &quot;application/json&quot;" library="resource">
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${RESPONSE["headers"]["Content-Type"]}</arg>
+<arg>${expected_type}</arg>
+</arguments>
+<status starttime="20190807 21:47:20.021" status="PASS" endtime="20190807 21:47:20.022"></status>
+</kw>
+<status starttime="20190807 21:47:20.018" status="PASS" endtime="20190807 21:47:20.022"></status>
+</kw>
+<kw name="And response body is json format" library="resource">
+<kw name="Dumps" library="json">
+<doc>Serialize ``obj`` to a JSON formatted ``str``.</doc>
+<arguments>
+<arg>${RESPONSE["body"]}</arg>
+</arguments>
+<assign>
+<var>${string}</var>
+</assign>
+<msg level="INFO" timestamp="20190807 21:47:20.023">${string} = {"name": "Random-Float-Device", "model": "Device-Virtual-01", "manufacturer": "IOTech", "deviceCommands": [{"name": "RandomValue_Float32", "get": [{"parameter": "RandomValue_Float32", "operation": "ge...</msg>
+<status starttime="20190807 21:47:20.022" status="PASS" endtime="20190807 21:47:20.023"></status>
+</kw>
+<kw name="Should Be Valid Json" library="Tools">
+<arguments>
+<arg>${string}</arg>
+</arguments>
+<status starttime="20190807 21:47:20.023" status="PASS" endtime="20190807 21:47:20.024"></status>
+</kw>
+<status starttime="20190807 21:47:20.022" status="PASS" endtime="20190807 21:47:20.024"></status>
+</kw>
+<kw name="And device profile name is &quot;${device_profile_name}&quot;" library="resource">
+<kw name="Get Json Value" library="Tools">
+<arguments>
+<arg>${RESPONSE["body"]}</arg>
+<arg>/name</arg>
+</arguments>
+<assign>
+<var>${name}</var>
+</assign>
+<msg level="INFO" timestamp="20190807 21:47:20.029">${name} = Random-Float-Device</msg>
+<status starttime="20190807 21:47:20.025" status="PASS" endtime="20190807 21:47:20.029"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${name}</arg>
+<arg>${expected_device_profile_name}</arg>
+</arguments>
+<status starttime="20190807 21:47:20.030" status="PASS" endtime="20190807 21:47:20.031"></status>
+</kw>
+<status starttime="20190807 21:47:20.024" status="PASS" endtime="20190807 21:47:20.032"></status>
+</kw>
+<status starttime="20190807 21:47:19.970" status="PASS" endtime="20190807 21:47:20.032"></status>
+</kw>
+<status starttime="20190807 21:47:19.772" critical="yes" status="PASS" endtime="20190807 21:47:20.032"></status>
+</test>
+<test name="Device existence check" id="s1-s1-s1-t3">
+<kw name="Device should exist in metadata">
+<arguments>
+<arg>${DEVICE_BOOL}</arg>
+</arguments>
+<kw name="Given get device &quot;${device_name}&quot;" library="resource">
+<kw name="Create url" library="resource">
+<arguments>
+<arg>${BASE_URL_METADATA}</arg>
+<arg>${PATH_GET_DEVICE}</arg>
+<arg>${device_name}</arg>
+</arguments>
+<assign>
+<var>${url}</var>
+</assign>
+<kw name="Catenate" library="BuiltIn">
+<doc>Catenates the given items together and returns the resulted string.</doc>
+<arguments>
+<arg>SEPARATOR=/</arg>
+<arg>@{args}</arg>
+</arguments>
+<assign>
+<var>${url}</var>
+</assign>
+<msg level="INFO" timestamp="20190807 21:47:20.042">${url} = http://192.168.0.120:48081/api/v1/device/name/Random-Boolean-Device</msg>
+<status starttime="20190807 21:47:20.041" status="PASS" endtime="20190807 21:47:20.042"></status>
+</kw>
+<msg level="INFO" timestamp="20190807 21:47:20.042">${url} = http://192.168.0.120:48081/api/v1/device/name/Random-Boolean-Device</msg>
+<status starttime="20190807 21:47:20.041" status="PASS" endtime="20190807 21:47:20.042"></status>
+</kw>
+<kw name="Send get request" library="resource">
+<arguments>
+<arg>${url}</arg>
+</arguments>
+<kw name="Get" library="REST">
+<tags>
+<tag>http</tag>
+</tags>
+<doc>*Sends a GET request to the endpoint.*</doc>
+<arguments>
+<arg>${url}</arg>
+<arg>headers={ "Accept": "text/plain" }</arg>
+</arguments>
+<assign>
+<var>${RESPONSE}</var>
+</assign>
+<msg level="INFO" timestamp="20190807 21:47:20.074">${RESPONSE} = {'headers': {'Date': 'Wed, 07 Aug 2019 13:47:20 GMT', 'Content-Type': 'application/json', 'Transfer-Encoding': 'chunked'}, 'body': {'name': 'Random-Boolean-Device', 'adminState': 'UNLOCKED', 'profile'...</msg>
+<status starttime="20190807 21:47:20.046" status="PASS" endtime="20190807 21:47:20.074"></status>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<arguments>
+<arg>${RESPONSE}</arg>
+</arguments>
+<msg level="INFO" timestamp="20190807 21:47:20.075">${RESPONSE} = {'headers': {'Date': 'Wed, 07 Aug 2019 13:47:20 GMT', 'Content-Type': 'application/json', 'Transfer-Encoding': 'chunked'}, 'body': {'name': 'Random-Boolean-Device', 'adminState': 'UNLOCKED', 'profile'...</msg>
+<status starttime="20190807 21:47:20.074" status="PASS" endtime="20190807 21:47:20.075"></status>
+</kw>
+<status starttime="20190807 21:47:20.045" status="PASS" endtime="20190807 21:47:20.075"></status>
+</kw>
+<status starttime="20190807 21:47:20.036" status="PASS" endtime="20190807 21:47:20.075"></status>
+</kw>
+<kw name="When response status is ok" library="resource">
+<kw name="Should Be True" library="BuiltIn">
+<doc>Fails if the given condition is not true.</doc>
+<arguments>
+<arg>${RESPONSE["status"]} == ${STATUS_CODE_OK}</arg>
+</arguments>
+<status starttime="20190807 21:47:20.080" status="PASS" endtime="20190807 21:47:20.080"></status>
+</kw>
+<status starttime="20190807 21:47:20.076" status="PASS" endtime="20190807 21:47:20.082"></status>
+</kw>
+<kw name="Then response time should be less than &quot;600&quot; milliseconds" library="resource">
+<kw name="Should Be True" library="BuiltIn">
+<doc>Fails if the given condition is not true.</doc>
+<arguments>
+<arg>${RESPONSE["seconds"]} &lt; ${acceptable_value}</arg>
+</arguments>
+<status starttime="20190807 21:47:20.082" status="PASS" endtime="20190807 21:47:20.083"></status>
+</kw>
+<status starttime="20190807 21:47:20.082" status="PASS" endtime="20190807 21:47:20.083"></status>
+</kw>
+<kw name="And response should have header &quot;Content-Type&quot;" library="resource">
+<kw name="Should Contain" library="BuiltIn">
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<arguments>
+<arg>${RESPONSE["headers"]}</arg>
+<arg>${content_type}</arg>
+</arguments>
+<status starttime="20190807 21:47:20.086" status="PASS" endtime="20190807 21:47:20.087"></status>
+</kw>
+<status starttime="20190807 21:47:20.083" status="PASS" endtime="20190807 21:47:20.087"></status>
+</kw>
+<kw name="And content type is &quot;application/json&quot;" library="resource">
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${RESPONSE["headers"]["Content-Type"]}</arg>
+<arg>${expected_type}</arg>
+</arguments>
+<status starttime="20190807 21:47:20.087" status="PASS" endtime="20190807 21:47:20.092"></status>
+</kw>
+<status starttime="20190807 21:47:20.087" status="PASS" endtime="20190807 21:47:20.092"></status>
+</kw>
+<kw name="And response body is json format" library="resource">
+<kw name="Dumps" library="json">
+<doc>Serialize ``obj`` to a JSON formatted ``str``.</doc>
+<arguments>
+<arg>${RESPONSE["body"]}</arg>
+</arguments>
+<assign>
+<var>${string}</var>
+</assign>
+<msg level="INFO" timestamp="20190807 21:47:20.093">${string} = {"name": "Random-Boolean-Device", "adminState": "UNLOCKED", "profile": {"name": "Random-Boolean-Device", "model": "Device-Virtual-01", "manufacturer": "IOTech", "deviceCommands": [{"name": "RandomValu...</msg>
+<status starttime="20190807 21:47:20.093" status="PASS" endtime="20190807 21:47:20.093"></status>
+</kw>
+<kw name="Should Be Valid Json" library="Tools">
+<arguments>
+<arg>${string}</arg>
+</arguments>
+<status starttime="20190807 21:47:20.094" status="PASS" endtime="20190807 21:47:20.094"></status>
+</kw>
+<status starttime="20190807 21:47:20.092" status="PASS" endtime="20190807 21:47:20.094"></status>
+</kw>
+<kw name="And device name is &quot;${device_name}&quot;" library="resource">
+<kw name="Get Json Value" library="Tools">
+<arguments>
+<arg>${RESPONSE["body"]}</arg>
+<arg>/name</arg>
+</arguments>
+<assign>
+<var>${name}</var>
+</assign>
+<msg level="INFO" timestamp="20190807 21:47:20.095">${name} = Random-Boolean-Device</msg>
+<status starttime="20190807 21:47:20.095" status="PASS" endtime="20190807 21:47:20.095"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${name}</arg>
+<arg>${expected_device_name}</arg>
+</arguments>
+<status starttime="20190807 21:47:20.096" status="PASS" endtime="20190807 21:47:20.096"></status>
+</kw>
+<status starttime="20190807 21:47:20.094" status="PASS" endtime="20190807 21:47:20.096"></status>
+</kw>
+<status starttime="20190807 21:47:20.035" status="PASS" endtime="20190807 21:47:20.096"></status>
+</kw>
+<kw name="Device should exist in metadata">
+<arguments>
+<arg>${DEVICE_INT}</arg>
+</arguments>
+<kw name="Given get device &quot;${device_name}&quot;" library="resource">
+<kw name="Create url" library="resource">
+<arguments>
+<arg>${BASE_URL_METADATA}</arg>
+<arg>${PATH_GET_DEVICE}</arg>
+<arg>${device_name}</arg>
+</arguments>
+<assign>
+<var>${url}</var>
+</assign>
+<kw name="Catenate" library="BuiltIn">
+<doc>Catenates the given items together and returns the resulted string.</doc>
+<arguments>
+<arg>SEPARATOR=/</arg>
+<arg>@{args}</arg>
+</arguments>
+<assign>
+<var>${url}</var>
+</assign>
+<msg level="INFO" timestamp="20190807 21:47:20.112">${url} = http://192.168.0.120:48081/api/v1/device/name/Random-Integer-Device</msg>
+<status starttime="20190807 21:47:20.111" status="PASS" endtime="20190807 21:47:20.112"></status>
+</kw>
+<msg level="INFO" timestamp="20190807 21:47:20.112">${url} = http://192.168.0.120:48081/api/v1/device/name/Random-Integer-Device</msg>
+<status starttime="20190807 21:47:20.108" status="PASS" endtime="20190807 21:47:20.112"></status>
+</kw>
+<kw name="Send get request" library="resource">
+<arguments>
+<arg>${url}</arg>
+</arguments>
+<kw name="Get" library="REST">
+<tags>
+<tag>http</tag>
+</tags>
+<doc>*Sends a GET request to the endpoint.*</doc>
+<arguments>
+<arg>${url}</arg>
+<arg>headers={ "Accept": "text/plain" }</arg>
+</arguments>
+<assign>
+<var>${RESPONSE}</var>
+</assign>
+<msg level="INFO" timestamp="20190807 21:47:20.140">${RESPONSE} = {'headers': {'Date': 'Wed, 07 Aug 2019 13:47:20 GMT', 'Content-Type': 'application/json', 'Transfer-Encoding': 'chunked'}, 'body': {'name': 'Random-Integer-Device', 'adminState': 'UNLOCKED', 'profile'...</msg>
+<status starttime="20190807 21:47:20.116" status="PASS" endtime="20190807 21:47:20.140"></status>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<arguments>
+<arg>${RESPONSE}</arg>
+</arguments>
+<msg level="INFO" timestamp="20190807 21:47:20.143">${RESPONSE} = {'headers': {'Date': 'Wed, 07 Aug 2019 13:47:20 GMT', 'Content-Type': 'application/json', 'Transfer-Encoding': 'chunked'}, 'body': {'name': 'Random-Integer-Device', 'adminState': 'UNLOCKED', 'profile'...</msg>
+<status starttime="20190807 21:47:20.141" status="PASS" endtime="20190807 21:47:20.144"></status>
+</kw>
+<status starttime="20190807 21:47:20.112" status="PASS" endtime="20190807 21:47:20.144"></status>
+</kw>
+<status starttime="20190807 21:47:20.103" status="PASS" endtime="20190807 21:47:20.144"></status>
+</kw>
+<kw name="When response status is ok" library="resource">
+<kw name="Should Be True" library="BuiltIn">
+<doc>Fails if the given condition is not true.</doc>
+<arguments>
+<arg>${RESPONSE["status"]} == ${STATUS_CODE_OK}</arg>
+</arguments>
+<status starttime="20190807 21:47:20.150" status="PASS" endtime="20190807 21:47:20.150"></status>
+</kw>
+<status starttime="20190807 21:47:20.149" status="PASS" endtime="20190807 21:47:20.150"></status>
+</kw>
+<kw name="Then response time should be less than &quot;600&quot; milliseconds" library="resource">
+<kw name="Should Be True" library="BuiltIn">
+<doc>Fails if the given condition is not true.</doc>
+<arguments>
+<arg>${RESPONSE["seconds"]} &lt; ${acceptable_value}</arg>
+</arguments>
+<status starttime="20190807 21:47:20.151" status="PASS" endtime="20190807 21:47:20.152"></status>
+</kw>
+<status starttime="20190807 21:47:20.151" status="PASS" endtime="20190807 21:47:20.152"></status>
+</kw>
+<kw name="And response should have header &quot;Content-Type&quot;" library="resource">
+<kw name="Should Contain" library="BuiltIn">
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<arguments>
+<arg>${RESPONSE["headers"]}</arg>
+<arg>${content_type}</arg>
+</arguments>
+<status starttime="20190807 21:47:20.152" status="PASS" endtime="20190807 21:47:20.153"></status>
+</kw>
+<status starttime="20190807 21:47:20.152" status="PASS" endtime="20190807 21:47:20.153"></status>
+</kw>
+<kw name="And content type is &quot;application/json&quot;" library="resource">
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${RESPONSE["headers"]["Content-Type"]}</arg>
+<arg>${expected_type}</arg>
+</arguments>
+<status starttime="20190807 21:47:20.153" status="PASS" endtime="20190807 21:47:20.154"></status>
+</kw>
+<status starttime="20190807 21:47:20.153" status="PASS" endtime="20190807 21:47:20.154"></status>
+</kw>
+<kw name="And response body is json format" library="resource">
+<kw name="Dumps" library="json">
+<doc>Serialize ``obj`` to a JSON formatted ``str``.</doc>
+<arguments>
+<arg>${RESPONSE["body"]}</arg>
+</arguments>
+<assign>
+<var>${string}</var>
+</assign>
+<msg level="INFO" timestamp="20190807 21:47:20.157">${string} = {"name": "Random-Integer-Device", "adminState": "UNLOCKED", "profile": {"name": "Random-Integer-Device", "model": "Device-Virtual-01", "manufacturer": "IOTech", "deviceCommands": [{"name": "RandomValu...</msg>
+<status starttime="20190807 21:47:20.155" status="PASS" endtime="20190807 21:47:20.157"></status>
+</kw>
+<kw name="Should Be Valid Json" library="Tools">
+<arguments>
+<arg>${string}</arg>
+</arguments>
+<status starttime="20190807 21:47:20.157" status="PASS" endtime="20190807 21:47:20.158"></status>
+</kw>
+<status starttime="20190807 21:47:20.154" status="PASS" endtime="20190807 21:47:20.159"></status>
+</kw>
+<kw name="And device name is &quot;${device_name}&quot;" library="resource">
+<kw name="Get Json Value" library="Tools">
+<arguments>
+<arg>${RESPONSE["body"]}</arg>
+<arg>/name</arg>
+</arguments>
+<assign>
+<var>${name}</var>
+</assign>
+<msg level="INFO" timestamp="20190807 21:47:20.160">${name} = Random-Integer-Device</msg>
+<status starttime="20190807 21:47:20.160" status="PASS" endtime="20190807 21:47:20.160"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${name}</arg>
+<arg>${expected_device_name}</arg>
+</arguments>
+<status starttime="20190807 21:47:20.160" status="PASS" endtime="20190807 21:47:20.161"></status>
+</kw>
+<status starttime="20190807 21:47:20.159" status="PASS" endtime="20190807 21:47:20.161"></status>
+</kw>
+<status starttime="20190807 21:47:20.103" status="PASS" endtime="20190807 21:47:20.161"></status>
+</kw>
+<kw name="Device should exist in metadata">
+<arguments>
+<arg>${DEVICE_UINT}</arg>
+</arguments>
+<kw name="Given get device &quot;${device_name}&quot;" library="resource">
+<kw name="Create url" library="resource">
+<arguments>
+<arg>${BASE_URL_METADATA}</arg>
+<arg>${PATH_GET_DEVICE}</arg>
+<arg>${device_name}</arg>
+</arguments>
+<assign>
+<var>${url}</var>
+</assign>
+<kw name="Catenate" library="BuiltIn">
+<doc>Catenates the given items together and returns the resulted string.</doc>
+<arguments>
+<arg>SEPARATOR=/</arg>
+<arg>@{args}</arg>
+</arguments>
+<assign>
+<var>${url}</var>
+</assign>
+<msg level="INFO" timestamp="20190807 21:47:20.169">${url} = http://192.168.0.120:48081/api/v1/device/name/Random-UnsignedInteger-Device</msg>
+<status starttime="20190807 21:47:20.168" status="PASS" endtime="20190807 21:47:20.169"></status>
+</kw>
+<msg level="INFO" timestamp="20190807 21:47:20.169">${url} = http://192.168.0.120:48081/api/v1/device/name/Random-UnsignedInteger-Device</msg>
+<status starttime="20190807 21:47:20.168" status="PASS" endtime="20190807 21:47:20.169"></status>
+</kw>
+<kw name="Send get request" library="resource">
+<arguments>
+<arg>${url}</arg>
+</arguments>
+<kw name="Get" library="REST">
+<tags>
+<tag>http</tag>
+</tags>
+<doc>*Sends a GET request to the endpoint.*</doc>
+<arguments>
+<arg>${url}</arg>
+<arg>headers={ "Accept": "text/plain" }</arg>
+</arguments>
+<assign>
+<var>${RESPONSE}</var>
+</assign>
+<msg level="INFO" timestamp="20190807 21:47:20.192">${RESPONSE} = {'headers': {'Date': 'Wed, 07 Aug 2019 13:47:20 GMT', 'Content-Type': 'application/json', 'Transfer-Encoding': 'chunked'}, 'body': {'name': 'Random-UnsignedInteger-Device', 'adminState': 'UNLOCKED', '...</msg>
+<status starttime="20190807 21:47:20.171" status="PASS" endtime="20190807 21:47:20.192"></status>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<arguments>
+<arg>${RESPONSE}</arg>
+</arguments>
+<msg level="INFO" timestamp="20190807 21:47:20.198">${RESPONSE} = {'headers': {'Date': 'Wed, 07 Aug 2019 13:47:20 GMT', 'Content-Type': 'application/json', 'Transfer-Encoding': 'chunked'}, 'body': {'name': 'Random-UnsignedInteger-Device', 'adminState': 'UNLOCKED', '...</msg>
+<status starttime="20190807 21:47:20.197" status="PASS" endtime="20190807 21:47:20.198"></status>
+</kw>
+<status starttime="20190807 21:47:20.169" status="PASS" endtime="20190807 21:47:20.198"></status>
+</kw>
+<status starttime="20190807 21:47:20.167" status="PASS" endtime="20190807 21:47:20.198"></status>
+</kw>
+<kw name="When response status is ok" library="resource">
+<kw name="Should Be True" library="BuiltIn">
+<doc>Fails if the given condition is not true.</doc>
+<arguments>
+<arg>${RESPONSE["status"]} == ${STATUS_CODE_OK}</arg>
+</arguments>
+<status starttime="20190807 21:47:20.199" status="PASS" endtime="20190807 21:47:20.199"></status>
+</kw>
+<status starttime="20190807 21:47:20.198" status="PASS" endtime="20190807 21:47:20.199"></status>
+</kw>
+<kw name="Then response time should be less than &quot;600&quot; milliseconds" library="resource">
+<kw name="Should Be True" library="BuiltIn">
+<doc>Fails if the given condition is not true.</doc>
+<arguments>
+<arg>${RESPONSE["seconds"]} &lt; ${acceptable_value}</arg>
+</arguments>
+<status starttime="20190807 21:47:20.200" status="PASS" endtime="20190807 21:47:20.200"></status>
+</kw>
+<status starttime="20190807 21:47:20.200" status="PASS" endtime="20190807 21:47:20.201"></status>
+</kw>
+<kw name="And response should have header &quot;Content-Type&quot;" library="resource">
+<kw name="Should Contain" library="BuiltIn">
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<arguments>
+<arg>${RESPONSE["headers"]}</arg>
+<arg>${content_type}</arg>
+</arguments>
+<status starttime="20190807 21:47:20.201" status="PASS" endtime="20190807 21:47:20.201"></status>
+</kw>
+<status starttime="20190807 21:47:20.201" status="PASS" endtime="20190807 21:47:20.202"></status>
+</kw>
+<kw name="And content type is &quot;application/json&quot;" library="resource">
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${RESPONSE["headers"]["Content-Type"]}</arg>
+<arg>${expected_type}</arg>
+</arguments>
+<status starttime="20190807 21:47:20.205" status="PASS" endtime="20190807 21:47:20.206"></status>
+</kw>
+<status starttime="20190807 21:47:20.205" status="PASS" endtime="20190807 21:47:20.206"></status>
+</kw>
+<kw name="And response body is json format" library="resource">
+<kw name="Dumps" library="json">
+<doc>Serialize ``obj`` to a JSON formatted ``str``.</doc>
+<arguments>
+<arg>${RESPONSE["body"]}</arg>
+</arguments>
+<assign>
+<var>${string}</var>
+</assign>
+<msg level="INFO" timestamp="20190807 21:47:20.207">${string} = {"name": "Random-UnsignedInteger-Device", "adminState": "UNLOCKED", "profile": {"name": "Random-UnsignedInteger-Device", "model": "Device-Virtual-01", "manufacturer": "IOTech", "deviceCommands": [{"na...</msg>
+<status starttime="20190807 21:47:20.206" status="PASS" endtime="20190807 21:47:20.207"></status>
+</kw>
+<kw name="Should Be Valid Json" library="Tools">
+<arguments>
+<arg>${string}</arg>
+</arguments>
+<status starttime="20190807 21:47:20.208" status="PASS" endtime="20190807 21:47:20.208"></status>
+</kw>
+<status starttime="20190807 21:47:20.206" status="PASS" endtime="20190807 21:47:20.213"></status>
+</kw>
+<kw name="And device name is &quot;${device_name}&quot;" library="resource">
+<kw name="Get Json Value" library="Tools">
+<arguments>
+<arg>${RESPONSE["body"]}</arg>
+<arg>/name</arg>
+</arguments>
+<assign>
+<var>${name}</var>
+</assign>
+<msg level="INFO" timestamp="20190807 21:47:20.214">${name} = Random-UnsignedInteger-Device</msg>
+<status starttime="20190807 21:47:20.213" status="PASS" endtime="20190807 21:47:20.214"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${name}</arg>
+<arg>${expected_device_name}</arg>
+</arguments>
+<status starttime="20190807 21:47:20.214" status="PASS" endtime="20190807 21:47:20.215"></status>
+</kw>
+<status starttime="20190807 21:47:20.213" status="PASS" endtime="20190807 21:47:20.215"></status>
+</kw>
+<status starttime="20190807 21:47:20.167" status="PASS" endtime="20190807 21:47:20.215"></status>
+</kw>
+<kw name="Device should exist in metadata">
+<arguments>
+<arg>${DEVICE_FLOAT}</arg>
+</arguments>
+<kw name="Given get device &quot;${device_name}&quot;" library="resource">
+<kw name="Create url" library="resource">
+<arguments>
+<arg>${BASE_URL_METADATA}</arg>
+<arg>${PATH_GET_DEVICE}</arg>
+<arg>${device_name}</arg>
+</arguments>
+<assign>
+<var>${url}</var>
+</assign>
+<kw name="Catenate" library="BuiltIn">
+<doc>Catenates the given items together and returns the resulted string.</doc>
+<arguments>
+<arg>SEPARATOR=/</arg>
+<arg>@{args}</arg>
+</arguments>
+<assign>
+<var>${url}</var>
+</assign>
+<msg level="INFO" timestamp="20190807 21:47:20.220">${url} = http://192.168.0.120:48081/api/v1/device/name/Random-Float-Device</msg>
+<status starttime="20190807 21:47:20.220" status="PASS" endtime="20190807 21:47:20.221"></status>
+</kw>
+<msg level="INFO" timestamp="20190807 21:47:20.221">${url} = http://192.168.0.120:48081/api/v1/device/name/Random-Float-Device</msg>
+<status starttime="20190807 21:47:20.220" status="PASS" endtime="20190807 21:47:20.221"></status>
+</kw>
+<kw name="Send get request" library="resource">
+<arguments>
+<arg>${url}</arg>
+</arguments>
+<kw name="Get" library="REST">
+<tags>
+<tag>http</tag>
+</tags>
+<doc>*Sends a GET request to the endpoint.*</doc>
+<arguments>
+<arg>${url}</arg>
+<arg>headers={ "Accept": "text/plain" }</arg>
+</arguments>
+<assign>
+<var>${RESPONSE}</var>
+</assign>
+<msg level="INFO" timestamp="20190807 21:47:20.240">${RESPONSE} = {'headers': {'Date': 'Wed, 07 Aug 2019 13:47:20 GMT', 'Content-Type': 'application/json', 'Transfer-Encoding': 'chunked'}, 'body': {'name': 'Random-Float-Device', 'adminState': 'UNLOCKED', 'profile': ...</msg>
+<status starttime="20190807 21:47:20.221" status="PASS" endtime="20190807 21:47:20.240"></status>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<arguments>
+<arg>${RESPONSE}</arg>
+</arguments>
+<msg level="INFO" timestamp="20190807 21:47:20.241">${RESPONSE} = {'headers': {'Date': 'Wed, 07 Aug 2019 13:47:20 GMT', 'Content-Type': 'application/json', 'Transfer-Encoding': 'chunked'}, 'body': {'name': 'Random-Float-Device', 'adminState': 'UNLOCKED', 'profile': ...</msg>
+<status starttime="20190807 21:47:20.240" status="PASS" endtime="20190807 21:47:20.241"></status>
+</kw>
+<status starttime="20190807 21:47:20.221" status="PASS" endtime="20190807 21:47:20.243"></status>
+</kw>
+<status starttime="20190807 21:47:20.218" status="PASS" endtime="20190807 21:47:20.243"></status>
+</kw>
+<kw name="When response status is ok" library="resource">
+<kw name="Should Be True" library="BuiltIn">
+<doc>Fails if the given condition is not true.</doc>
+<arguments>
+<arg>${RESPONSE["status"]} == ${STATUS_CODE_OK}</arg>
+</arguments>
+<status starttime="20190807 21:47:20.246" status="PASS" endtime="20190807 21:47:20.247"></status>
+</kw>
+<status starttime="20190807 21:47:20.243" status="PASS" endtime="20190807 21:47:20.247"></status>
+</kw>
+<kw name="Then response time should be less than &quot;600&quot; milliseconds" library="resource">
+<kw name="Should Be True" library="BuiltIn">
+<doc>Fails if the given condition is not true.</doc>
+<arguments>
+<arg>${RESPONSE["seconds"]} &lt; ${acceptable_value}</arg>
+</arguments>
+<status starttime="20190807 21:47:20.248" status="PASS" endtime="20190807 21:47:20.250"></status>
+</kw>
+<status starttime="20190807 21:47:20.247" status="PASS" endtime="20190807 21:47:20.250"></status>
+</kw>
+<kw name="And response should have header &quot;Content-Type&quot;" library="resource">
+<kw name="Should Contain" library="BuiltIn">
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<arguments>
+<arg>${RESPONSE["headers"]}</arg>
+<arg>${content_type}</arg>
+</arguments>
+<status starttime="20190807 21:47:20.250" status="PASS" endtime="20190807 21:47:20.252"></status>
+</kw>
+<status starttime="20190807 21:47:20.250" status="PASS" endtime="20190807 21:47:20.252"></status>
+</kw>
+<kw name="And content type is &quot;application/json&quot;" library="resource">
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${RESPONSE["headers"]["Content-Type"]}</arg>
+<arg>${expected_type}</arg>
+</arguments>
+<status starttime="20190807 21:47:20.252" status="PASS" endtime="20190807 21:47:20.253"></status>
+</kw>
+<status starttime="20190807 21:47:20.252" status="PASS" endtime="20190807 21:47:20.253"></status>
+</kw>
+<kw name="And response body is json format" library="resource">
+<kw name="Dumps" library="json">
+<doc>Serialize ``obj`` to a JSON formatted ``str``.</doc>
+<arguments>
+<arg>${RESPONSE["body"]}</arg>
+</arguments>
+<assign>
+<var>${string}</var>
+</assign>
+<msg level="INFO" timestamp="20190807 21:47:20.256">${string} = {"name": "Random-Float-Device", "adminState": "UNLOCKED", "profile": {"name": "Random-Float-Device", "model": "Device-Virtual-01", "manufacturer": "IOTech", "deviceCommands": [{"name": "RandomValue_Fl...</msg>
+<status starttime="20190807 21:47:20.256" status="PASS" endtime="20190807 21:47:20.256"></status>
+</kw>
+<kw name="Should Be Valid Json" library="Tools">
+<arguments>
+<arg>${string}</arg>
+</arguments>
+<status starttime="20190807 21:47:20.256" status="PASS" endtime="20190807 21:47:20.259"></status>
+</kw>
+<status starttime="20190807 21:47:20.253" status="PASS" endtime="20190807 21:47:20.259"></status>
+</kw>
+<kw name="And device name is &quot;${device_name}&quot;" library="resource">
+<kw name="Get Json Value" library="Tools">
+<arguments>
+<arg>${RESPONSE["body"]}</arg>
+<arg>/name</arg>
+</arguments>
+<assign>
+<var>${name}</var>
+</assign>
+<msg level="INFO" timestamp="20190807 21:47:20.260">${name} = Random-Float-Device</msg>
+<status starttime="20190807 21:47:20.259" status="PASS" endtime="20190807 21:47:20.260"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${name}</arg>
+<arg>${expected_device_name}</arg>
+</arguments>
+<status starttime="20190807 21:47:20.260" status="PASS" endtime="20190807 21:47:20.260"></status>
+</kw>
+<status starttime="20190807 21:47:20.259" status="PASS" endtime="20190807 21:47:20.261"></status>
+</kw>
+<status starttime="20190807 21:47:20.217" status="PASS" endtime="20190807 21:47:20.261"></status>
+</kw>
+<status starttime="20190807 21:47:20.033" critical="yes" status="PASS" endtime="20190807 21:47:20.262"></status>
+</test>
+<test name="Put value testing" id="s1-s1-s1-t4">
+<kw name="Given set &quot;RandomValue_Int8&quot; of &quot;${device_int}&quot; to &quot;66&quot;" library="resource">
+<kw name="Create url" library="resource">
+<arguments>
+<arg>${BASE_URL_DEVICE_VIRTUAL}</arg>
+<arg>${PATH_PUT_DEVICE}</arg>
+<arg>${device}</arg>
+<arg>${resource}</arg>
+</arguments>
+<assign>
+<var>${url}</var>
+</assign>
+<kw name="Catenate" library="BuiltIn">
+<doc>Catenates the given items together and returns the resulted string.</doc>
+<arguments>
+<arg>SEPARATOR=/</arg>
+<arg>@{args}</arg>
+</arguments>
+<assign>
+<var>${url}</var>
+</assign>
+<msg level="INFO" timestamp="20190807 21:47:20.267">${url} = http://192.168.0.120:49990/api/v1/device/name/Random-Integer-Device/RandomValue_Int8</msg>
+<status starttime="20190807 21:47:20.266" status="PASS" endtime="20190807 21:47:20.267"></status>
+</kw>
+<msg level="INFO" timestamp="20190807 21:47:20.267">${url} = http://192.168.0.120:49990/api/v1/device/name/Random-Integer-Device/RandomValue_Int8</msg>
+<status starttime="20190807 21:47:20.266" status="PASS" endtime="20190807 21:47:20.267"></status>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>${resource}=${value}</arg>
+</arguments>
+<assign>
+<var>${dict}</var>
+</assign>
+<msg level="INFO" timestamp="20190807 21:47:20.271">${dict} = {'RandomValue_Int8': '66'}</msg>
+<status starttime="20190807 21:47:20.270" status="PASS" endtime="20190807 21:47:20.271"></status>
+</kw>
+<kw name="Dumps" library="json">
+<doc>Serialize ``obj`` to a JSON formatted ``str``.</doc>
+<arguments>
+<arg>${dict}</arg>
+</arguments>
+<assign>
+<var>${body}</var>
+</assign>
+<msg level="INFO" timestamp="20190807 21:47:20.272">${body} = {"RandomValue_Int8": "66"}</msg>
+<status starttime="20190807 21:47:20.271" status="PASS" endtime="20190807 21:47:20.272"></status>
+</kw>
+<kw name="Send put request" library="resource">
+<arguments>
+<arg>${url}</arg>
+<arg>${body}</arg>
+</arguments>
+<kw name="Put" library="REST">
+<tags>
+<tag>http</tag>
+</tags>
+<doc>*Sends a PUT request to the endpoint.*</doc>
+<arguments>
+<arg>${url}</arg>
+<arg>body=${body}</arg>
+<arg>headers={ "Accept": "application/json" }</arg>
+</arguments>
+<assign>
+<var>${RESPONSE}</var>
+</assign>
+<msg level="INFO" timestamp="20190807 21:47:20.292">${RESPONSE} = {'headers': {'Content-Length': '0', 'Date': 'Wed, 07 Aug 2019 13:47:20 GMT'}, 'body': '', 'status': 200, 'seconds': 0.009352000000000001}</msg>
+<status starttime="20190807 21:47:20.275" status="PASS" endtime="20190807 21:47:20.292"></status>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<arguments>
+<arg>${RESPONSE}</arg>
+</arguments>
+<msg level="INFO" timestamp="20190807 21:47:20.293">${RESPONSE} = {'headers': {'Content-Length': '0', 'Date': 'Wed, 07 Aug 2019 13:47:20 GMT'}, 'body': '', 'status': 200, 'seconds': 0.009352000000000001}</msg>
+<status starttime="20190807 21:47:20.292" status="PASS" endtime="20190807 21:47:20.293"></status>
+</kw>
+<status starttime="20190807 21:47:20.272" status="PASS" endtime="20190807 21:47:20.293"></status>
+</kw>
+<status starttime="20190807 21:47:20.265" status="PASS" endtime="20190807 21:47:20.293"></status>
+</kw>
+<kw name="When response status is ok" library="resource">
+<kw name="Should Be True" library="BuiltIn">
+<doc>Fails if the given condition is not true.</doc>
+<arguments>
+<arg>${RESPONSE["status"]} == ${STATUS_CODE_OK}</arg>
+</arguments>
+<status starttime="20190807 21:47:20.294" status="PASS" endtime="20190807 21:47:20.297"></status>
+</kw>
+<status starttime="20190807 21:47:20.293" status="PASS" endtime="20190807 21:47:20.298"></status>
+</kw>
+<kw name="Then &quot;RandomValue_Int8&quot; of &quot;${device_int}&quot; should be &quot;66&quot;" library="resource">
+<kw name="Create url" library="resource">
+<arguments>
+<arg>${BASE_URL_DEVICE_VIRTUAL}</arg>
+<arg>${PATH_GET_DEVICE}</arg>
+<arg>${device}</arg>
+<arg>${resource}</arg>
+</arguments>
+<assign>
+<var>${url}</var>
+</assign>
+<kw name="Catenate" library="BuiltIn">
+<doc>Catenates the given items together and returns the resulted string.</doc>
+<arguments>
+<arg>SEPARATOR=/</arg>
+<arg>@{args}</arg>
+</arguments>
+<assign>
+<var>${url}</var>
+</assign>
+<msg level="INFO" timestamp="20190807 21:47:20.306">${url} = http://192.168.0.120:49990/api/v1/device/name/Random-Integer-Device/RandomValue_Int8</msg>
+<status starttime="20190807 21:47:20.301" status="PASS" endtime="20190807 21:47:20.306"></status>
+</kw>
+<msg level="INFO" timestamp="20190807 21:47:20.306">${url} = http://192.168.0.120:49990/api/v1/device/name/Random-Integer-Device/RandomValue_Int8</msg>
+<status starttime="20190807 21:47:20.300" status="PASS" endtime="20190807 21:47:20.306"></status>
+</kw>
+<kw name="Send get request" library="resource">
+<arguments>
+<arg>${url}</arg>
+</arguments>
+<kw name="Get" library="REST">
+<tags>
+<tag>http</tag>
+</tags>
+<doc>*Sends a GET request to the endpoint.*</doc>
+<arguments>
+<arg>${url}</arg>
+<arg>headers={ "Accept": "text/plain" }</arg>
+</arguments>
+<assign>
+<var>${RESPONSE}</var>
+</assign>
+<msg level="INFO" timestamp="20190807 21:47:20.327">${RESPONSE} = {'headers': {'Content-Length': '168', 'Date': 'Wed, 07 Aug 2019 13:47:20 GMT', 'Content-Type': 'application/json'}, 'body': {'origin': 1565185640320, 'readings': [{'name': 'RandomValue_Int8', 'origin'...</msg>
+<status starttime="20190807 21:47:20.307" status="PASS" endtime="20190807 21:47:20.327"></status>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<arguments>
+<arg>${RESPONSE}</arg>
+</arguments>
+<msg level="INFO" timestamp="20190807 21:47:20.329">${RESPONSE} = {'headers': {'Content-Length': '168', 'Date': 'Wed, 07 Aug 2019 13:47:20 GMT', 'Content-Type': 'application/json'}, 'body': {'origin': 1565185640320, 'readings': [{'name': 'RandomValue_Int8', 'origin'...</msg>
+<status starttime="20190807 21:47:20.328" status="PASS" endtime="20190807 21:47:20.329"></status>
+</kw>
+<status starttime="20190807 21:47:20.307" status="PASS" endtime="20190807 21:47:20.329"></status>
+</kw>
+<kw name="Get Json Value" library="Tools">
+<arguments>
+<arg>${RESPONSE["body"]}</arg>
+<arg>/readings/0/value</arg>
+</arguments>
+<assign>
+<var>${value}</var>
+</assign>
+<msg level="INFO" timestamp="20190807 21:47:20.338">${value} = 66</msg>
+<status starttime="20190807 21:47:20.337" status="PASS" endtime="20190807 21:47:20.338"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${value}</arg>
+<arg>${expected_value}</arg>
+</arguments>
+<status starttime="20190807 21:47:20.338" status="PASS" endtime="20190807 21:47:20.339"></status>
+</kw>
+<status starttime="20190807 21:47:20.299" status="PASS" endtime="20190807 21:47:20.339"></status>
+</kw>
+<status starttime="20190807 21:47:20.264" critical="yes" status="PASS" endtime="20190807 21:47:20.350"></status>
+</test>
+<kw name="Shutdown Edgex" library="EdgeX" type="teardown">
+<msg level="INFO" timestamp="20190807 21:48:28.041">exit 0</msg>
+<msg level="INFO" timestamp="20190807 21:48:28.041">Success to execute cmd: docker run --rm --env-file x86_64.env -e PWD=/home/felix/Downloads/Playground_RobotFramework -v /home/felix/Downloads/Playground_RobotFramework:/home/felix/Downloads/Playground_RobotFramework -w /home/felix/Downloads/Playground_RobotFramework -v /var/run/docker.sock:/var/run/docker.sock docker/compose:1.24.0 down</msg>
+<msg level="INFO" timestamp="20190807 21:48:28.098">Deleted Volumes:
+</msg>
+<msg level="INFO" timestamp="20190807 21:48:28.099">playground_robotframework_db-data
+</msg>
+<msg level="INFO" timestamp="20190807 21:48:28.099">playground_robotframework_log-data
+</msg>
+<msg level="INFO" timestamp="20190807 21:48:28.099">playground_robotframework_consul-data
+</msg>
+<msg level="INFO" timestamp="20190807 21:48:28.099">playground_robotframework_portainer_data
+</msg>
+<msg level="INFO" timestamp="20190807 21:48:28.099">playground_robotframework_consul-config
+</msg>
+<msg level="INFO" timestamp="20190807 21:48:28.100">708033443b278cc7f5d047abdc8fdf7773022bc39f5af97c3c448e9fac09b992
+</msg>
+<msg level="INFO" timestamp="20190807 21:48:28.100">
+</msg>
+<msg level="INFO" timestamp="20190807 21:48:28.100">Total reclaimed space: 315.6MB
+</msg>
+<msg level="INFO" timestamp="20190807 21:48:28.102">exit 0</msg>
+<msg level="INFO" timestamp="20190807 21:48:28.102">Success to execute cmd: docker volume prune -f</msg>
+<status starttime="20190807 21:47:20.351" status="PASS" endtime="20190807 21:48:28.102"></status>
+</kw>
+<status starttime="20190807 21:46:33.953" status="PASS" endtime="20190807 21:48:28.103"></status>
+</suite>
+<status starttime="20190807 21:46:33.950" status="PASS" endtime="20190807 21:48:28.105"></status>
+</suite>
+<status starttime="20190807 21:46:33.913" status="PASS" endtime="20190807 21:48:28.107"></status>
+</suite>
+<statistics>
+<total>
+<stat pass="4" fail="0">Critical Tests</stat>
+<stat pass="4" fail="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat name="Playground RobotFramework" pass="4" fail="0" id="s1">Playground RobotFramework</stat>
+<stat name="Suites" pass="4" fail="0" id="s1-s1">Playground RobotFramework.Suites</stat>
+<stat name="Device Virtual Tests" pass="4" fail="0" id="s1-s1-s1">Playground RobotFramework.Suites.Device Virtual Tests</stat>
+</suite>
+</statistics>
+<errors>
+<msg level="WARN" timestamp="20190807 21:47:19.752">Response body content is not JSON. Content-Type is: text/plain; charset=utf-8</msg>
+</errors>
+</robot>

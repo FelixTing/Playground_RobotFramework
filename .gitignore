@@ -2,8 +2,5 @@
 *.log
 .idea
 venv
-log.html
-output.xml
-report.html
 test.robot
 __pycache__
