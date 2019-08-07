@@ -49,14 +49,6 @@ Response should have header "${content_type}"
 Response text should include version number "${version_number}"
     Should contain    ${RESPONSE["body"]}    ${version_number}
 
-#Device profile should exists in metadata
-#    [Arguments]    ${device_profile_name}
-#    Check device profile is exists in metadata    ${device_profile_name}
-#
-#Device should exists in metadata
-#    [Arguments]    ${device_name}
-#    Check device is exists in metadata    ${device_name}
-
 Get device profile "${profile_name}"
     ${url} =    Create url    ${BASE_URL_METADATA}    ${PATH_GET_DEVICE_PROFILE}    ${profile_name}
     Send get request    ${url}
@@ -70,7 +62,7 @@ Response body is json format
 
 Device profile name is "${expected_device_profile_name}"
     ${name} =    Get json value    ${RESPONSE["body"]}    /name
-    should be equal as strings    ${name}    ${expected_device_profile_name}
+    Should be equal as strings    ${name}    ${expected_device_profile_name}
 
 Get device "${device_name}"
     ${url} =    Create url    ${BASE_URL_METADATA}    ${PATH_GET_DEVICE}    ${device_name}
@@ -78,7 +70,7 @@ Get device "${device_name}"
 
 Device name is "${expected_device_name}"
     ${name} =    Get json value    ${RESPONSE["body"]}    /name
-    should be equal as strings    ${name}    ${expected_device_name}
+    Should be equal as strings    ${name}    ${expected_device_name}
 
 Set "${resource}" of "${device}" to "${value}"
     ${url} =    Create url    ${BASE_URL_DEVICE_VIRTUAL}    ${PATH_PUT_DEVICE}    ${device}    ${resource}
