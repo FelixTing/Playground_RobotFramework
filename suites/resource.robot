@@ -7,7 +7,7 @@ Library         ../lib/Tools.py
 
 *** Variables ***
 ${STATUS_CODE_OK}                             200
-${HOST}                                       192.168.0.120
+${HOST}                                       localhost
 ${PORT_DEVICE_VIRTUAL}                        49990
 ${PORT_METADATA}                              48081
 ${BASE_URL_DEVICE_VIRTUAL}                    http://${HOST}:${PORT_DEVICE_VIRTUAL}/api/v1
